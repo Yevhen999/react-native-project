@@ -7,7 +7,7 @@ import {
   View,
 } from "react-native";
 
-const avatar = require("../assets/avatar.png");
+const avatar = require("../../assets/avatar.png");
 
 export const LoginScreen = () => {
   return (

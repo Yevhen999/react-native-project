@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { ImageBackground, StyleSheet, View } from "react-native";
-import RegistrationScreen from "./Screens/RegistrationScreen";
+import RegistrationScreen from "./components/Screens/RegistrationScreen";
 
 const image = require("./assets/background.png");
 
