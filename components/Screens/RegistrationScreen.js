@@ -7,16 +7,18 @@ import {
   Image,
 } from "react-native";
 
+// const userPhoto = require("../../assets/avatar.png");
+const addUserPhoto = require("../../assets/add-avatar.png");
+
 export const RegistrationScreen = () => {
   return (
     <View style={styles.wrap}>
-      <View style={styles.userImage} />
-      <TouchableOpacity style={styles.addAvatar}>
-        <Image source={require("../../assets/add-avatar.png")} />
-      </TouchableOpacity>
-
+      <View style={styles.userImage}>
+        <TouchableOpacity style={styles.addAvatar}>
+          <Image source={addUserPhoto} />
+        </TouchableOpacity>
+      </View>
       <Text>Регистрация</Text>
-
       <View>
         <TextInput style={styles.input} placeholder="Логин"></TextInput>
 
@@ -56,8 +58,8 @@ const styles = StyleSheet.create({
   },
   addAvatar: {
     position: "absolute",
-    right: 125,
-    bottom: 400,
+    right: -12.5,
+    bottom: 26,
   },
   input: {
     marginTop: 16,
