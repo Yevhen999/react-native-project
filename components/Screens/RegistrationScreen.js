@@ -8,6 +8,7 @@ import {
   Image,
   Platform,
   KeyboardAvoidingView,
+  Keyboard,
 } from "react-native";
 
 const addUserPhoto = require("../../assets/add-avatar.png");
@@ -20,43 +21,66 @@ const initialState = {
 
 export const RegistrationScreen = () => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
+  const [state, setState] = useState(initialState);
+
+  const keyboardHide = () => {
+    setIsShowKeyboard(false);
+    Keyboard.dismiss();
+    console.log(state);
+    setState(initialState);
+  };
 
   return (
     <KeyboardAvoidingView
     // behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <View style={{ ...styles.wrap, paddingBottom: isShowKeyboard ? 20 : 78 }}>
+      <View style={{ ...styles.wrap, paddingBottom: isShowKeyboard ? 0 : 45 }}>
         <View style={styles.userImage}>
           <TouchableOpacity style={styles.addAvatar}>
             <Image source={addUserPhoto} />
           </TouchableOpacity>
         </View>
-        <Text style={styles.title}>Регистрация</Text>
+        <Text style={styles.title}>Sign Up</Text>
         <View style={styles.inputWrap}>
           <TextInput
             style={styles.input}
-            placeholder="Логин"
+            placeholder="Login"
+            value={state.login}
             onFocus={() => setIsShowKeyboard(true)}
+            onChangeText={(value) =>
+              setState((prevState) => ({ ...prevState, login: value }))
+            }
           />
           <TextInput
             style={styles.input}
-            placeholder="Адрес электронной почты"
+            placeholder="Email"
+            value={state.email}
             onFocus={() => setIsShowKeyboard(true)}
+            onChangeText={(value) =>
+              setState((prevState) => ({ ...prevState, email: value }))
+            }
           />
           <TextInput
             style={styles.input}
             placeholder="Пароль"
-            // value={password}
+            value={state.password}
             secureTextEntry={true}
             onFocus={() => setIsShowKeyboard(true)}
+            onChangeText={(value) =>
+              setState((prevState) => ({ ...prevState, password: value }))
+            }
           />
         </View>
         <View style={styles.btnWrap}>
-          <TouchableOpacity style={styles.btnRegistration}>
-            <Text style={styles.btnText}>Зарегистрироваться</Text>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            style={styles.btnRegistration}
+            onPress={() => keyboardHide()}
+          >
+            <Text style={styles.btnText}>Sign up</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.bottomText}>Уже есть аккаунт? Войти</Text>
+        <Text style={styles.bottomText}>Have an account? Log in</Text>
       </View>
     </KeyboardAvoidingView>
   );
