@@ -5,11 +5,13 @@ import {
   View,
   TouchableWithoutFeedback,
   Keyboard,
+  Dimensions,
 } from "react-native";
 import RegistrationScreen from "./components/Screens/RegistrationScreen";
+import LoginScreen from "./components/Screens/LoginScreen";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const image = require("./assets/background.png");
 
@@ -19,6 +21,21 @@ export default function App() {
     "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
   });
+
+  const [dimensions, setDimensions] = useState(
+    Dimensions.get("window").width - 20 * 2
+  );
+
+  useEffect(() => {
+    const onChange = () => {
+      const width = Dimensions.get("window").width - 20 * 2;
+      setDimensions(width);
+    };
+    Dimensions.addEventListener("change", onChange);
+    return () => {
+      Dimensions.removeEventListener("change", onChange);
+    };
+  }, []);
 
   useEffect(() => {
     async function prepare() {
@@ -41,7 +58,8 @@ export default function App() {
           resizeMode="cover"
           style={styles.backgroundImage}
         >
-          <RegistrationScreen />
+          {/* <RegistrationScreen /> */}
+          <LoginScreen />
           <StatusBar style="auto" />
         </ImageBackground>
       </TouchableWithoutFeedback>

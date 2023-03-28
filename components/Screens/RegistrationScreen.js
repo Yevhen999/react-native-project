@@ -31,9 +31,7 @@ export const RegistrationScreen = () => {
   };
 
   return (
-    <KeyboardAvoidingView
-    // behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"}>
       <View style={{ ...styles.wrap, paddingBottom: isShowKeyboard ? 0 : 45 }}>
         <View style={styles.userImage}>
           <TouchableOpacity style={styles.addAvatar}>
@@ -62,7 +60,7 @@ export const RegistrationScreen = () => {
           />
           <TextInput
             style={styles.input}
-            placeholder="Пароль"
+            placeholder="password"
             value={state.password}
             secureTextEntry={true}
             onFocus={() => setIsShowKeyboard(true)}
@@ -89,7 +87,6 @@ export const RegistrationScreen = () => {
 const styles = StyleSheet.create({
   wrap: {
     position: "relative",
-    // paddingBottom: 78,
     backgroundColor: "white",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
@@ -98,7 +95,6 @@ const styles = StyleSheet.create({
   userImage: {
     position: "absolute",
     top: -60,
-    // right: Dimensions.get("window").width / 2 - 60,
     width: 120,
     height: 120,
     borderRadius: 16,
